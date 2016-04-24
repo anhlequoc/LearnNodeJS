@@ -1,0 +1,1 @@
+Learning core workshop from NodeSchool: http://nodeschool.io/
