@@ -9,7 +9,7 @@ fs.readFile(process.argv[2], 'utf8', function(err, data){
 	console.log(arr.length - 1);
 
 })
-//note fs.readFile(filename, option, functoin callback(){}):
+//note fs.readFile(filename, option, function callback(){}):
 // - option la 'utf8': data lấy được sẽ là nội dung của file
 // - nếu không có option: data lấy được là raw data của buffer đó
 
