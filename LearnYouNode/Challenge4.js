@@ -1,14 +1,26 @@
-//Bai 4 - NodeJS asynchronous
 var fs = require('fs');
-//console.log(process.argv[2]); -> debug 
-fs.readFile(process.argv[2], 'utf8', function(err, data){
-	if (err) throw err;
-	//console.log(data);
-	//console.log(typeof(data)); -> string
-	var arr = data.split('\n');
-	console.log(arr.length - 1);
+var path = require('path');
+var extFiltered = '.' + process.argv[3];
+// console.log(extFiltered); debug
+fs.readdir(process.argv[2], function callback(err, list){
+	//console.log(list); debug: show mang chua cac file
+	for (var i = 0; i <= list.length; i++) {
+		if (path.extname(list[i]) === extFiltered) {
+			console.log(list[i]);
+		} //extName with dau .
+	}
 
 })
-//note fs.readFile(filename, option, function callback(){}):
-// - option la 'utf8': data lấy được sẽ là nội dung của file
-// - nếu không có option: data lấy được là raw data của buffer đó
+
+/* Solution 
+   var fs = require('fs')
+   var path = require('path')
+
+   fs.readdir(process.argv[2], function (err, list) {
+      list.forEach(function (file) {
+         if (path.extname(file) === '.' + process.argv[3])
+           console.log(file)
+       })
+     })
+*/
+//adf adf af 
