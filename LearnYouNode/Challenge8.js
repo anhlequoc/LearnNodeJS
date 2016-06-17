@@ -6,21 +6,51 @@ var result = [];
 var count = 0;
 //console.log(urlObj);
 
-for(var index = 0; index<3; index++){
-	http.get(urlArr[index], function(response){
+
+	http.get(urlArr[0], function(response){
 		response.pipe(bl(function(err, data){
 			if (err){
 				return console.log(err);
 			}
-			result[index] = data.toString();
+			result[0] = data.toString();
 			count++;
 			if (count == 3) {
 				printResult();
+				count = 0;
 			}
 			
 		}));
 	});
-}
+
+	http.get(urlArr[1], function(response){
+		response.pipe(bl(function(err, data){
+			if (err){
+				return console.log(err);
+			}
+			result[1] = data.toString();
+			count++;
+			if (count == 3) {
+				printResult();
+				count = 0;
+			}
+			
+		}));
+	});
+
+	http.get(urlArr[2], function(response){
+		response.pipe(bl(function(err, data){
+			if (err){
+				return console.log(err);
+			}
+			result[2] = data.toString();
+			count++;
+			if (count == 3) {
+				printResult();
+				count = 0;
+			}
+			
+		}));
+	});
 
 function printResult() {
 	for (var i = 0; i < result.length; i++) {
