@@ -6,12 +6,17 @@ var result = [];
 var count = 0;
 //console.log(urlObj);
 
-for(var index = 0; index<3; index++){
+for(var i = 0; i<3; i++) {
+	httpGet(i);
+}
+
+function httpGet(index) {
 	http.get(urlArr[index], function(response){
 		response.pipe(bl(function(err, data){
 			if (err){
 				return console.log(err);
 			}
+			//console.log(data.toString());
 			result[index] = data.toString();
 			count++;
 			if (count == 3) {
