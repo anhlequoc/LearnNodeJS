@@ -6,26 +6,65 @@ var result = [];
 var count = 0;
 //console.log(urlObj);
 
+<<<<<<< HEAD
 for(var i = 0; i<3; i++) {
 	httpGet(i);
 }
 
 function httpGet(index) {
 	http.get(urlArr[index], function(response){
+=======
+
+	http.get(urlArr[0], function(response){
+>>>>>>> 520ced0b8a99fb0bffa7e7bb91ae995c817e916b
 		response.pipe(bl(function(err, data){
 			if (err){
 				return console.log(err);
 			}
+<<<<<<< HEAD
 			//console.log(data.toString());
 			result[index] = data.toString();
+=======
+			result[0] = data.toString();
+>>>>>>> 520ced0b8a99fb0bffa7e7bb91ae995c817e916b
 			count++;
 			if (count == 3) {
 				printResult();
+				count = 0;
 			}
 			
 		}));
 	});
-}
+
+	http.get(urlArr[1], function(response){
+		response.pipe(bl(function(err, data){
+			if (err){
+				return console.log(err);
+			}
+			result[1] = data.toString();
+			count++;
+			if (count == 3) {
+				printResult();
+				count = 0;
+			}
+			
+		}));
+	});
+
+	http.get(urlArr[2], function(response){
+		response.pipe(bl(function(err, data){
+			if (err){
+				return console.log(err);
+			}
+			result[2] = data.toString();
+			count++;
+			if (count == 3) {
+				printResult();
+				count = 0;
+			}
+			
+		}));
+	});
 
 function printResult() {
 	for (var i = 0; i < result.length; i++) {
