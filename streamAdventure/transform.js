@@ -1,4 +1,4 @@
-var through = require('through2');
+var through = require('through2'); //console.log(typeof(through));
 var stream = through(write, end);
 
 function write(buffer, utf8, next) {
