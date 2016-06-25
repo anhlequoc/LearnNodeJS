@@ -1,18 +1,21 @@
 var through = require('through2');
 var stream = through(write, end);
-consoloe.log(typeof(stream));
-function write(stream, 'utf8', next) {
-	stream = stream.toString().toUpperCase();
 
-	this.push(stream + '\n');
+function write(buffer, utf8, next) {
+	var string = buffer.toString().toUpperCase();
+
+	this.push(string);
 	next();
 }
-
 function end(done) {
 	done();
 }
-
-stream.on('data', write);
-stream.on('end', end);
-
 process.stdin.pipe(stream).pipe(process.stdout);
+
+// Here is the reference solution:
+  // var through = require('through2');
+  // var tr = through(function (buf, _, next) {
+  //     this.push(buf.toString().toUpperCase());
+  //     next();
+  // });
+  // process.stdin.pipe(tr).pipe(process.stdout);
