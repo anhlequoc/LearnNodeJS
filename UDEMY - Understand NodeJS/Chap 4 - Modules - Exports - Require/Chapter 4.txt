@@ -1,0 +1,88 @@
+# Module, Exports, Require
+Module: A reusable block of code whose existence does not accidently impact other code
+
+#First-class function
+Function in Javascript is an object - a special type of object, so a fucntion can be passed to another function
+	Example:
+		function greet() {
+			console.log('hello');
+		}
+		function Greetings(fn){
+			fn();
+		}
+		Greetings(greet); //pass function greet() vào function Greetings()
+
+		//use function expression on the fly
+		function greetings(function (){
+			console.log('hello hehehe');
+		});
+
+
+# 06: javascript passed by value and passed by reference
+- Pass a primitive variable: passed by value
+- Pass an object: passed by reference
+see more at: http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language
+	sample code:
+		function changeStuff(a, b, c)
+		{
+		  a = a * 10;
+		  b.item = "changed";
+		  c = {item: "changed"};
+		}
+
+		var num = 10;
+		var obj1 = {item: "unchanged"};
+		var obj2 = {item: "unchanged"};
+
+		changeStuff(num, obj1, obj2);
+
+		console.log(num);
+		console.log(obj1.item);    
+		console.log(obj2.item);
+		// result:
+		// 10
+		// changed
+		// unchanged
+		reason: In practical terms, this means that if you change the parameter itself (as with num and obj2), that won't affect the item that was fed into the parameter. But if you change the INTERNALS of the parameter, that will propagate back up (as with obj1).
+
+#Immediately Invoked Function Expression (IIFE)
+	- Scope
+	- Example:
+		// fucntion expression (có ngoặc ở đầu, cuối)
+		function () {
+
+		}
+		// gọi function ngay lập tức
+		function () {
+
+		}()
+		// là tạo 1 function expression, sau đó gọi nó ngay lập tức 
+		(function () {
+
+		}())
+
+	- SCOPE: biến khai báo trong IMMEDIATELY INVOKED FUNCTION EXPRESSION thì chỉ có scope trong function đó
+		+ example: 
+			var firstname = "Jane";
+			(function () {
+				var firstname = "John";
+				console.log(firstname);
+			}());
+			console.log(firstname);
+
+# Module Exports and Requires
+	Everything I write in Node.js which is run by V8 engine is put into a function
+	Sum up:
+		- require is a function that coce pass "path"
+		- module.exports is what the require function returns.
+
+#JSON
+	JSON is Javascript Object Notation - a standard for structuring data that in inspired by javascript object literals
+
+#More on require
+	- ở trong 1 folder, nếu không có file require thì gọi index.js ở folder đó
+
+#Clip 12 - Exports và module.exports
+	- exports và module.exports đều cùng trỏ đến 1 object trên bộ nhớ 
+	- khi viết exports = function(){} -> dùng dấu "=": có nghĩa là đã chuyển exports thành 1 function và trỏ đến 1 bộ nhớ khác với module.exports
+	- theo tác giả, chỉ nên sử dụng module.exports, quên đi exports.
