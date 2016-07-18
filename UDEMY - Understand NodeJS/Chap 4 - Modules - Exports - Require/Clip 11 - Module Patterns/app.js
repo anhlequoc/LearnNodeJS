@@ -24,3 +24,15 @@ greet5();
 
 /* đây là 5 cách phổ biển của MODULE PATTERN, được dùng tùy theo hoàn cảnh, yêu cầu của architecture
  */
+
+var arr = [];
+arr.push(function () {
+   console.log('A');
+});
+arr.push(function () {
+    console.log('A');
+});
+arr.push(function () {
+    console.log('C');
+});
+console.log(arr);
