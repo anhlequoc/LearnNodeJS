@@ -1,0 +1,6 @@
+#Event: is something that happened in our app that we can respond to. In Node, there are 2 different kinds of events:
+	1. System Events: C++ Core, libuv
+	2. Custom Events: from Javascript Core -> It's Event Emitter inside Javscript core
+
+#Event Emitter:
+	 1. Event Listener: is the code that responds to an event. In javascript's case, listener will be a function. 1 event can have many listeners
