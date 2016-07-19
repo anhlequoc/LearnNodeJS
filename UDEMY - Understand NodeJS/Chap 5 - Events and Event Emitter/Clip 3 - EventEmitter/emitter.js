@@ -20,5 +20,4 @@ Emitter.prototype.on = function(type, listener){
         }
     }
 };
-
 module.exports = Emitter;
