@@ -4,3 +4,18 @@
 
 #Event Emitter:
 	 1. Event Listener: is the code that responds to an event. In javascript's case, listener will be a function. 1 event can have many listeners
+	 2. Clip 6: Event Emitter (lấy từ requires('events')), có thể được kế thừa để có thể truy cập vào các attributes của nó
+
+#Template Literal:
+    - It's a way to concatenate strings in Javascipt(ES6)
+
+#Call and Apply:
+    - function.call() & function.apply(): cùng ý nghĩa
+    - nếu function có tham số: function (param1, param2...)
+        -> function.call(thisArg, param1, param2) (cách nhau bởi dẩy phẩy)
+        -> function.apply (thisArg [param1, param2])...-> gọi theo mảng
+    - Ở hàm function cứ chỗ nào có this thì thay bằng thisArg()
+    - Dùng nhiều trong "borrowing method/function"
+
+#Clip 9 - khi dùng hàm Constructor.call(this) -> sẽ truyền các attribute của constructor vào this
+    -> cách này đảm bảo truyền mọi attributes của Constructor vào this
