@@ -6,7 +6,7 @@ module.exports = class Greetr extends EventEmitter {
         - extends: util.inherits(Greetr, EventEmitter);
         - super: EventEmitter.call(this);
     */
-    constructor(){
+    constructor() {
         super();
         this.greeting = 'Hello World';
     }
@@ -14,4 +14,4 @@ module.exports = class Greetr extends EventEmitter {
         console.log(this.greeting + ': ' + data);
         this.emit('greet', data);
     }
-}
+};

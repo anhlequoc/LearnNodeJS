@@ -1,0 +1,10 @@
+#Synchronous (đồng bộ):
+    - là khi chỉ có một process chạy một lúc, (dòng code chạy tại cùng một thời điểm)
+    - Javascript là synchronous, V8 engine cũng là synchronous
+#Asynchronous (bất đồng bộ):
+    - có nhiều hơn 1 process cùng chạy một lúc, (nhiều hơn 1 đoạn code cùng chạy đồng thời)
+    - Node.JS là asynchronous
+
+#Callback:
+    - callback là 1 function được truyền vào 1 (hoặc một vài) function khác, sẽ được gọi tại một thời điểm nào đó (khi có sự kiện nào đó xảy ra)
+    - 
