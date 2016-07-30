@@ -7,4 +7,99 @@
 
 #Callback:
     - callback là 1 function được truyền vào 1 (hoặc một vài) function khác, sẽ được gọi tại một thời điểm nào đó (khi có sự kiện nào đó xảy ra)
-    - 
+
+#Stream and Buffer:
+	- Buffer: là nơi chứa dữ liệu trong quá trình luân chuyển
+	- Stream: là 1 thứ tự các dữ liệu đc truyền sau một khoảng thời gian
+
+#Binary data:
+	- data is stored as 0 and 1 (Binary digit -> bit)
+
+#Character Sets:
+	- Chữ cái được hiển thị bằng một số (ví dụ UNICODE VÀ ASCII là chracter sets)
+
+#Buffer:
+    var buffer = new ArrayBuffer(8); //8 là 8 bytes, hay 64 bits - buffer sẽ chứa raw binary data
+    var view = new Int32Array(buffer); //32 là 32 bits - view chứa data không ở dạng raw
+    /*
+    buffer ở trên chứa được 64 bits, view là 1 array chứa buffer, mỗi view[] là 32 bits -> lưu đc 2 view[] thôi
+    */
+
+#Files và fs:
+    var fs = require('fs');
+    var greet = fs.readFileSync('./greet.txt','utf-8'); // fs.readFileSync đọc raw data từ buffer, rồi mới convert theo utf-8
+    console.log(greet);
+
+    /*fs.readFileSync: chữ sync nghĩa là khi chạy, javascript sẽ chờ đến khi buffer được fill hết rồi mới chạy đến dòng 3 tiếp theo
+    - thích hợp để khi cần thiết đọc hết file cấu hình rồi mới chạy tiếp
+    - không thích hợp khi đọc data để hiển thị cho user vì có thể có nhiều user cùng truy cập file này, càng lâu khi file càng lớn do nodejs chạy trên 1 process duy nhất,
+    -> thay vào đó dùng readFile (callback)
+    */
+
+    var greet2 = fs.readFile('./greet.txt', 'utf-8', function(err, data){
+
+    });
+
+    /* cấu trúc error-first callback (giống function (err, callback){})
+        - error-first callback: hàm callback có 1 Error Object như là param đầu tiên của nó
+        - cách này nghĩa là theo standard, nếu truyền 1 callback vào fucntion, thì mình cần đưa vào param đầu tiên là Error. Nếu
+        không có lỗi nào thì là Eror null, và chạy tiếp dòng tiếp theo 
+    */
+
+    - nếu file quá lớn và có nhiều user request, sẽ có rất nhiều buffer size lớn được tạo -> cần xử lý nếu không application sẽ hết bộ nhớ
+
+#Stream:
+    - Chunk: is a piece of data being sent through a stream (data is split in 'chunks' and streamed
+    - Từ file stream.js trong node core, Stream kế thừa Event Emitter, nghĩa là 1 object stream có thể access đến "on", "emit" attribute của event emitter 
+
+    //core example: (see Clip 10 folder)
+    var fs = require('fs');
+    var readable = fs.createReadStream('./greet.txt', {encoding: 'utf8', highWaterMark: 16*1024});
+    /*
+    - highWaterMark: là kích thước lớn nhất của 1 chunk (đơn vị byte)
+    - file greet.txt có dung lượng là 65kb -> sẽ có 5 chunk tất cả để load hết content của file greet.txt
+    */
+
+    var writable = fs.createWriteStream('./greetcopy.txt');
+
+
+    //Vì readable kế thừa Stream, Stream kế thừa Event Emitter nên
+    readable.on('data', function (chunk) { //data là event được quy định ở Event Emitter
+        console.log(chunk.length); //chunk.length: độ lơn của chunk
+        /*result:
+            16384
+            16384
+            16384
+            16384
+            440
+        thực tế: hàm này chạy 5 lần để load hết data, nếu không có highWaterMark, hàm chạy 1 lần
+        */
+
+        writable.write(chunk); // copy nội dung từ greet.txt sang greetcopy.txt
+    });
+
+#Pipe:
+    - Pipe connect 2 streams bằng cách viết vào 1 stream những cái ĐANG được đọc từ stream kia
+    (Pipe: connecting two streams by writing to one stream what is being read from another)
+
+    var fs = require('fs');
+    var zlib = require('zlib');
+
+    var readable = fs.createReadStream('./greet.txt');
+    var writable = fs.createWriteStream('./greetcopy.txt');
+
+    readable.pipe(writable); //readable is src, writeable is destination - câu lệnh này giống dòng 23 ở clip 10/app.js
+    //chú ý: pipe() trả về 1 destination, nên có thể dùng lệnh pipe liên tục: readable.pipe(writeable).pipe(2ndDest)...
+
+    var compressed = fs.createWriteStream('./greet.txt.gz');
+    var gzip = zlib.createGzip(); // đây là 1 stream
+    readable.pipe(gzip).pipe(compressed); //METHOD CHAINING
+
+    /* Method chaining:
+        - a method returns an object so we can keep calling more methods.
+        - sometimes it returns the parent object (called 'cascading') and sometimes some other objects.
+    */
+
+    - Làm việc với stream và pipes là một trong những tính năng mạnh của Node
+
+-> Cần tận dụng tính năng stream và async của node khi viết app
