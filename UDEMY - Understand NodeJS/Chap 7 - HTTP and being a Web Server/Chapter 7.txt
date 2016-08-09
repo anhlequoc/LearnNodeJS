@@ -1,0 +1,29 @@
+#Clip 01
+- Protocol is a set of rules between devices to communicate. Some examplese of Protocol is HTTP (web), FTP (files transfer), SMTP (email)...
+- IP is Internet Protocol, is a set of number to specify a device that connects to internet
+- TCP (transmission control protocol) is the way that information is sent. By using TCP, information is taken and splitted into many pieces. These pieces are sent one at a time through the socket. Eeach individual piece is called package
+	+ comparing with node, TCP - socket - package is something like stream-pipelines-chunk
+- Socket is an idea last for long time:
+	+ Socket in general: sockets is opened and closed generally: flow would be: asking for the information, receive it and then socket is closed. Then we make another request (click a link, ask to download an image...), and new sockets are opened
+	+ Sock in web-socket: idea of web socket is newer one when a socket is opened constantly
+
+#Clip 02
+- Port: once a computer receives a packet, how it knows a program to sent it to?
+	When a program is setup on the operating system to receive packets from a particular port, it's said that the program "is listening" to that port
+	For example:
+		Web Broswer ---- (send requests) ----> Web server (NodeJS, Email, FTP). How do we know which server's application (NodeJS, Email, FTP) will handle web's requests ?
+		-> Application should be configured to listen at particular ports, such as: NodeJS (80, 443,...)
+
+#Clip 03
+- HTTP (hyper text Transfer Protocol): is a set of rules (and a format) for data being transfered on the web. It's a format(of various) defining data being transfered via TCP/IP
+	For example: a HTTP response from server:
+		HTTP/1.1 200 OK							(status)
+		Content-length: 44						(headers)
+		Content-Type: text/html					(headers)
+		<html><head>...</head></html>			(body)
+	By using this structure, both client will understand what server is saying. body part can be a html file, image, json file, javascript file...
+
+	Content-Type (MIME type): a standard for specifing the type of data being sent. MIME is Multiple Internet Mail Extensions (such as: application/json, text/html, image/jpeg)
+	Browser will check this content-type, then have the corresponding behavior for each content type:
+		image/jpeg: show image
+		text/html: render a web page

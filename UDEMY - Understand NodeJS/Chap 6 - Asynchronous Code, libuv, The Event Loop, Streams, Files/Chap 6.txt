@@ -7,4 +7,4 @@
 
 #Callback:
     - callback là 1 function được truyền vào 1 (hoặc một vài) function khác, sẽ được gọi tại một thời điểm nào đó (khi có sự kiện nào đó xảy ra)
-    - 
+    -
