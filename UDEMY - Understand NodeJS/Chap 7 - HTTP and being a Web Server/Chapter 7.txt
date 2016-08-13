@@ -27,3 +27,6 @@
 	Browser will check this content-type, then have the corresponding behavior for each content type:
 		image/jpeg: show image
 		text/html: render a web page
+
+#Clip 06:
+- Templates is text designed to be the basis for final text or content after being processed. There's usually some specific template language, so the template systems knows how to replace placeholders with real value 
