@@ -30,3 +30,14 @@
 
 #Clip 06:
 - Templates is text designed to be the basis for final text or content after being processed. There's usually some specific template language, so the template systems knows how to replace placeholders with real value 
+
+#Clip 06 + 07:
+- Clip 06:
+	var html = fs.readFileSync(__dirname + '/index.htm', 'utf8');
+	-> toàn bộ nội dung file index.html sẽ được đưa vào stream rồi mới gửi về user
+	-> khi có nhiều user cùng truy cập vào file index.htm này mà file này lớn -> server mất nhiều thời gian xử lý -> giảm performance
+
+- Clip 07:
+	var html = fs.createReadStream(__dirname + '/index.html').pipe(res);
+	-> nội dung file index.html được chia nhỏ thành các "chunk" sau đó gửi vào pipe theo từng chunk và bắn dần dần tới người dùng
+	-> server xử lý dần dần, hiệu năng được đảm bảo khi có nhiều người dùng
