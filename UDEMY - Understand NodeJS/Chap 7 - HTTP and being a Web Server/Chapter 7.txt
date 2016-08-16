@@ -41,3 +41,14 @@
 	var html = fs.createReadStream(__dirname + '/index.html').pipe(res);
 	-> nội dung file index.html được chia nhỏ thành các "chunk" sau đó gửi vào pipe theo từng chunk và bắn dần dần tới người dùng
 	-> server xử lý dần dần, hiệu năng được đảm bảo khi có nhiều người dùng
+
+#Clip 08:
+	- API - Application Programming Interface: is a set of tools for building a software application. It's set of URLs that accept and send data usually via HTTP and TCP/IP.
+	- Endpoint: is one URL in a web API. Sometimes that endpoint (URL) does multiple thing by making choices based on the HTTP request headers.
+
+#Clip 09:
+	- Serialize: is translating an object into a format that can be stored or transferred such as JSON, CSV, XML and other popular ones.
+	- Deserialize: is the opposite with serialize (converting format back into an object)
+
+#Clip 10:
+	- Routing: mapping HTTP requests to content
