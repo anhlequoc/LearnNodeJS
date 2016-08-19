@@ -1,0 +1,5 @@
+#Environment variables:
+- are global variables specific to environment (server) that our code is living in
+
+#HTTP Method:
+- specifies the type of action the request wishes to make such as POST, GET, DELETES and others...
