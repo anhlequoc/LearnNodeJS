@@ -3,3 +3,17 @@
 
 #HTTP Method:
 - specifies the type of action the request wishes to make such as POST, GET, DELETES and others...
+
+#Middelware:
+- is code that sits between 2 layers of software
+- express is a middleware because it sits between request and response
+- there are multiple levels for middleware
+- có thể sử dụng 3rd party middleware trong express cho tiết kiệm thời gian: http://expressjs.com/en/resources/middleware.html
+
+#Static files:
+- is not dymanic files, it's not processed by code in any way. For example, html, css, or images are 'static' files
+
+#Template and Template Engine:
+- template engine generate ra file html tương ứng
+- một số template engine phổ biến mà chạy với Express: Mustache, PUG, EJS, Jade
+- hầu hết render ra file html theo kiểu: res.render('tenfile', object) //object là chứa các biến để truyền vào file html
