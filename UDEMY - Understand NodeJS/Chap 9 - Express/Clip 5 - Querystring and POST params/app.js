@@ -1,5 +1,5 @@
 var express = require('express');
-//var ejs = require('ejs'); template engine không cần require module như các module khác
+var bodyParser = require('body-parser');
 var app = express();
 
 var port = process.env.PORT || 3000;
@@ -16,21 +16,19 @@ app.get('/', function(req, res){
 
 //routing:
 app.get('/person/:id', function(req, res){
-	res.render('person', { ID: req.params.id });//hầu hết các view engine đều sử dụng cách truyền data vào file static kiểu này, chèn 1 option vào sau tên file
-});
-//:id là con đó là biến -> gọi ra bằng req.params.id
-
-
-
-//create my own middleware
-app.use('/', function(req, res, next){
-	console.log('Request url: ' + req.url);
-	next();
+	res.render('person', { ID: req.params.id, Qstr: req.query.qstr });
+	//req.query: trả về object chứa các attibute trong querystring
+	//req.query.qstr: lấy giá trị của attribute 'qstr' trong querystring gửi lên từ browser
 });
 
+//xử lý POST:
+	// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.get('/api', function(req, res){
-	res.json({ firstname: 'Anh', lastname: 'Le' });
+app.post('/person', urlencodedParser, function(req, res){ //urlencodedParser - là middleware - sẽ đc call trước function callback này
+	//req.body trả về object chứa form data
+	res.send('Welcome, ' + req.body.firstname + ' ' + req.body.lastname + ' !');
+	console.log(req.body);
 });
 
 app.listen(port);

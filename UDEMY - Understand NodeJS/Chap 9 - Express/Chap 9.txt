@@ -17,3 +17,8 @@
 - template engine generate ra file html tương ứng
 - một số template engine phổ biến mà chạy với Express: Mustache, PUG, EJS, Jade
 - hầu hết render ra file html theo kiểu: res.render('tenfile', object) //object là chứa các biến để truyền vào file html
+
+#Querystring and POST params:
+- req.query: trả về object chứa các attibute trong querystring
+- req.query.qstr: lấy giá trị của attribute 'qstr' trong querystring gửi lên từ browser
+- POST data in a form: Express không có sẵn các hàm làm việc với POST data mà phải làm thông qua các middleware của Express. Một trong các middleware phổ biến là body-parser
