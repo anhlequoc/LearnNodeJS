@@ -5,4 +5,4 @@ var duplexer = require('duplexer2'); console.log(typeof(duplexer));
 module.exports = function(cmd, args){
 	var ps = spawn(cmd, args);
 	return duplexer(ps.stdin, ps.stdout);
-}
+};
